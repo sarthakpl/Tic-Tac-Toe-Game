@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/login.css">
+    <link rel="stylesheet" href="style/index.css">
+</head>
+
+<body>
+    <nav>
+        <div class="main-nav">
+            <div class="main-logo">
+                <img src="logo-removebg-preview.png" alt="">
+            </div>
+            <div class="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">login</a></li>
+                <li><a href="register.html">register</a></li>
+                <li><a href="scoreboard.html">scoreboard</a></li>
+            </div>
+        </div>
+        </div>
+    </nav>
+    <div class="main-container">
+        <div class="imag-cont">
+            <img src="Tic_Tac_Toe.gif" alt="" id="img-tictactoe">
+        </div>
+        <form action="" id="userForm">
+            <label for="Email" class="lab">Username</label><br>
+            <input type="text" id="name1" name="name" placeholder="enter your name " class="ind"><br>
+            <label for="Email" class="lab">Email</label><br>
+            <input type="text" id="email1" name="email" placeholder="enter your email" class="ind"><br>
+            <label for="Pass">Password</label><br>
+            <input type="password" id="password" name="pwd" placeholder="enter your password" class="ind"><br>
+            <button type="submit" class="btn-login">register</button>
+        </form>
+        <script>
+            function hashing(password) {
+                return password.split('').reduce((acc, char) => {
+                    return acc + char.charCodeAt(0);
+                }, 0);
+            }
+            function saveUserData(event) {
+                event.preventDefault();
+                let Username = document.getElementById('name1').value;
+                console.log(Username);
+                let Email = document.getElementById("email1").value;
+                console.log(Email);
+                let Password = document.getElementById('password').value;
+                console.log(Password);
+                let hashedPassword = hashing(Password);
+                console.log(hashedPassword);
+
+                let userData = {
+                    Username:Username,
+                    Email: Email,
+                    password: hashedPassword
+                }
+
+                localStorage.setItem('userData', JSON.stringify(userData));
+                console.log(userData);
+                console.log('succ');
+            }
+            document.getElementById("userForm").addEventListener("submit", saveUserData);
+
+        </script>
+</body>
+
+</html>

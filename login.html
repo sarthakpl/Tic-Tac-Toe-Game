@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/login.css">
+    <link rel="stylesheet" href="style/index.css">
+</head>
+<body>
+    <nav>
+        <div class="main-nav">
+            <div class="main-logo">
+                <img src="logo-removebg-preview.png" alt="">
+                </div>
+                <div class="navbar">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">login</a></li>
+                    <li><a href="register.html">register</a></li>
+                    <li><a href="scoreboard.html">scoreboard</a></li>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="main-container">
+        <div class="imag-cont">
+            <img src="Tic_Tac_Toe.gif" alt="" > 
+        </div>
+            <form action="" id="myForm1">
+                <label for="Email" class="lab">Email</label><br>
+                <input type="text" id="email2"class="ind"  name="email" placeholder="enter your email"><br>
+                <label for="Password">Password</label><br>
+                <input type="password" id="pass2" class="ind" name="pwd"placeholder="enter your password"><br>
+                <button type="submit" class="btn-login">Login</button>  
+            </form>  
+                <script>
+                    function hashing(password) {
+            return password.split('').reduce((acc, char) => {
+                return acc + char.charCodeAt(0);
+            }, 0);
+        }
+                    function loginUser(event) {  event.preventDefault();
+
+            let email = document.getElementById('email2').value;
+            let password = document.getElementById('pass2').value;
+
+            let stored = JSON.parse(localStorage.getItem("userData"));
+            if (stored === null) {
+                alert('account not found');
+                return;
+            }
+
+            if (email === '' || password === '') {
+                alert('Email and Password are required');
+                return;
+            }
+
+
+            if (email !== stored.Email ||hashing(password) !== stored.password) {
+                alert('Invalid Email or password');
+                return;
+            }
+
+
+            window.location.href = 'index.html';
+        }
+        let myForm = document.getElementById('myForm1');
+        myForm.addEventListener('submit', loginUser);
+               
+        </script>
+
+    </div>
+</body>
+</html>

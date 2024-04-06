@@ -1,0 +1,16 @@
+.tableS{
+    border: solid 1px  #c3c3c3;
+    color: white;
+    height: 600px;
+    width: 900px;
+    margin-left: 600px;
+    margin-top: 70px;
+    text-align: center;
+    font-size: xx-large;
+    border-radius: 10px solid  black;
+}
+.tr1{
+    height: 70px;
+}
+
+

@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-container{
+    height: auto;
+    width: 20%;
+    background-color: #c5c6c7;
+    text-align: center;
+    margin-top: 200px;
+    margin-left: 40%;
+    border-radius: 20px;
+}
+
+.lab{
+    font-size: larger;
+}
+.ind{
+    border: none;
+    height: 30px;
+    width: 60%;
+    border-radius: 10px;
+    border-bottom: solid #45a29e;
+}
+.btn-login{
+    width: 30%;
+    height:30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px
+}
+

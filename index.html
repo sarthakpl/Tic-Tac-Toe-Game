@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/index.css">
+</head>
+<body>
+    <nav>
+        <div class="main-nav">
+            <div class="main-logo">
+                <img src="logo-removebg-preview.png" alt="">
+                </div>
+                <div class="navbar">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">login</a></li>
+                    <li><a href="register.html">register</a></li>
+                    <li><a href="scoreboard.html">scoreboard</a></li>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="gried-container" id="grid">
+        <div class="box-grid" data-row="0" data-col="0"></div>
+        <div class="box-grid" data-row="0" data-col="1"></div>
+        <div class="box-grid" data-row="0" data-col="2"></div>
+        <div class="box-grid" data-row="1" data-col="0"></div>
+        <div class="box-grid" data-row="1" data-col="1"></div>
+        <div class="box-grid" data-row="1" data-col="2"></div>
+        <div class="box-grid" data-row="2" data-col="0"></div>
+        <div class="box-grid" data-row="2" data-col="1"></div>
+        <div class="box-grid" data-row="2" data-col="2"></div>
+    </div>
+    <div id="message"></div>
+    <script>
+        const board = Array(3).fill().map(() => Array(3).fill(null));
+
+        const grid = document.getElementById('grid');
+        let currentPlayer = 'O';
+
+        grid.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'DIV') return;
+            const row = parseInt(e.target.dataset.row, 10);
+            const col = parseInt(e.target.dataset.col, 10);
+            if (isNaN(row) || isNaN(col) || board[row][col] !== null) return;
+            board[row][col] = currentPlayer;
+            e.target.textContent = currentPlayer;
+            checkWin();
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        });
+
+        function checkWin() {
+
+            for (let i = 0; i < 3; i++) {
+                if (board[i][0] !== null && board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
+                    console.log(`Player ${board[i][0]} wins!`);
+                    alert(`Player ${board[i][0]} wins!`);
+                    location.reload();
+                    return;
+                }
+            }
+
+
+            for (let i = 0; i < 3; i++) {
+                if (board[0][i] !== null && board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
+                    console.log(`layer ${board[0][i]} wins!`);
+                    alert(`Player ${board[0][i]} wins!`);
+                    location.reload();
+                    return;
+                }
+            }
+
+
+            if (board[0][0] !== null && board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+                console.log(`Player ${board[0][0]} wins!`);
+                alert(`Player ${board[0][0]} wins!`);
+                location.reload();
+                return;
+            }
+            if (board[0][2] !== null && board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
+                console.log(`Player ${board[0][2]} wins!`);
+                alert(`Player ${board[0][2]} wins!`);
+                location.reload();
+                return;
+            }
+
+
+            if (!board.flat().includes(null)) {
+                console.log('It\'s a draw!');
+                alert('It\'s a draw!');
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
